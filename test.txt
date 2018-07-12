@@ -1,0 +1,189 @@
+var count = 0;
+var tmpdata='';
+option = {
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+   grid:{
+                top:'25%',//距上边距
+
+                left:'25%',//距离左边距
+
+             right:'25%',//距离右边距
+
+             bottom:'25%',//距离下边距
+
+              },
+  tooltip : {//鼠标悬浮弹窗提示
+	       /*  trigger: 'axis' */
+	    	trigger : 'item',
+	    	  show:true,
+	          showDelay: 0,
+	          hideDelay: 0,
+	         transitionDuration:0, 
+	         backgroundColor : 'rgba(255,0,255,0.7)',
+	         borderColor : '#f50',
+	         borderRadius : 8,
+	         borderWidth: 2,
+	         padding: 10,    // [5, 10, 15, 20]
+	         formatter: function (params,ticket,callback) {
+	            // console.log(params);
+	             var res = params[1]+   '<br/>'+"XX人数"+' : ' + params[2];
+	             return res;
+	         }
+	    },
+    legend: {
+        data:['直接访问', '邮件营销','联盟广告','视频广告','搜索引擎']
+    },
+    toolbox: {
+        show : true,
+        barwidth:2,
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    calculable : true,
+    xAxis : [
+        {
+            type : 'value',
+           show:false,
+        }
+    ],
+    yAxis : [
+        {
+          show:false,
+            type : 'category',
+            data : ['周一','周二','周三','周四','周五','周六','周日']
+        }
+    ],
+    series : [
+        {
+            name:'直接访问',
+            type:'bar',
+            stack: '总量',
+            data:[320, 302, 301, 334, 390, 330, 320],
+            barWidth: 4,
+            itemStyle:{
+                    normal:{    //柱状图颜色
+                        label:{
+                            show: true,   //显示文本
+                            position: 'top',  //数据值位置
+                            textStyle:{
+                                color:'#000',
+                                fontSize:'10'
+                            },
+                           formatter: function (params,ticket,callback) {
+                            	 tmpdata = '';
+                                 tmpdata = tmpdata + params['value'] + '/';
+	                        	 var res = params['name'] ;
+	                      	     return res;
+	         				}
+                        }
+                    }
+			}
+		},
+        {
+            name:'邮件营销',
+            type:'bar',
+            stack: '总量',
+            itemStyle : { normal: {label : {show: true, position: 'outRight'}}},
+            data:[120, 132, 101, 134, 90, 230, 0],
+            barWidth: 4,
+            itemStyle:{
+                    normal:{    //柱状图颜色
+                        label:{
+                            show: true,   //显示文本
+                            position: 'top',  //数据值位置
+                            textStyle:{
+                                color:'#000',
+                                fontSize:'5'
+                            },
+                           formatter: function (params,ticket,callback) {
+                             tmpdata = tmpdata + params['value']+ '/';
+	                        	var res = params['name'] ;
+	                      	  return '';
+	         				}
+                        }
+                    }
+                }
+        },
+        {
+            name:'联盟广告',
+            type:'bar',
+            stack: '总量',
+            itemStyle : { normal: {label : {show: true, position: 'insideRight'}}},
+            data:[220, 182, 191, 234, 290, 330, 310],
+          itemStyle:{
+                    normal:{    //柱状图颜色
+                        label:{
+                            show: true,   //显示文本
+                            position: 'top',  //数据值位置
+                            textStyle:{
+                                color:'#000',
+                                fontSize:'5'
+                            },
+                           formatter: function (params,ticket,callback) {
+                             tmpdata = tmpdata + params['value']+ '/';
+	                        	var res = params['name'] ;
+	                      	  return '';
+	         				}
+                        }
+                    }
+                }
+        },
+        {
+            name:'视频广告',
+            type:'bar',
+            stack: '总量',
+            data:[150, 212, 201, 154, 190, 330, 0],
+            barWidth: 4,
+  		    itemStyle:{
+                    normal:{    //柱状图颜色
+                        label:{
+                            show: true,   //显示文本
+                            position: 'top',  //数据值位置
+                            textStyle:{
+                                color:'#000',
+                                fontSize:'5'
+                            },
+                           formatter: function (params,ticket,callback) {
+                             tmpdata = tmpdata + params['value']+ '/';
+	                      	  return '';
+	         				}
+                        }
+                    }
+                }
+        },
+        {
+            name:'搜索引擎',
+            type:'bar',
+            stack: '总量',
+            data:[820, 832, 0, 934, 1290, 1330, 0],
+            barWidth: 4,
+            itemStyle:{
+                    normal:{    //柱状图颜色
+                        label:{
+                            show: true,   //显示文本
+                            position: 'top',  //数据值位置
+                            textStyle:{
+                                color:'#000',
+                                fontSize:'15'
+                            },
+                           formatter: function (params,ticket,callback) {
+                             tmpdata = tmpdata + params['value']
+	                      	  return tmpdata;
+	         				}
+						}
+                    }
+                }
+        },
+    ]
+};
+                    
